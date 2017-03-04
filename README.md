@@ -1,4 +1,4 @@
-# vuex-basics
+# vuex-GetStarted 上手，理清概念
 
 > A Vue.js project
 
