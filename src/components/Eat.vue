@@ -1,28 +1,28 @@
 <template>
-    <div id="registration">
-        <h3>Register here</h3>
+    <div id="atEatting">
+        <h3>They are at Eatting</h3>
         <hr>
-        <div class="row" v-for="user in users">
-            <h4>{{ user.name }}</h4>
-            <button @click="registerUser(user)">Register</button>
+        <div class="row" v-for="hamster in atEatting">
+            <h4>{{ hamster.name }}</h4>
+            <button @click="finishedEat(hamster)">to Sleep</button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['users'],
+        props: ['atEatting'],
         methods: {
-            registerUser(user) {
-                this.$emit('userRegistered', user);
-                user.registered = true;
+            finishedEat(hamster) {
+                this.$emit('goSleep', hamster);
+                // user.registered = true;
             }
         }
     }
 </script>
 
 <style scoped>
-    #registration {
+    #atEatting {
         box-shadow: 1px 1px 2px 1px #ccc;
         margin: 20px;
         padding: 20px;
@@ -39,7 +39,7 @@
     }
 
     button {
-        background-color: lightgreen;
+        background-color: #86bcff;
         border: none;
         box-shadow: 1px 1px 1px black;
         font-size: inherit;
@@ -48,6 +48,6 @@
     }
 
     button:hover {
-        background-color: green;
+        background-color: #246eca;
     }
 </style>

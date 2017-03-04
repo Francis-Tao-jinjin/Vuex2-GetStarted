@@ -1,50 +1,69 @@
 <template>
   <div id="app">
-    <app-registration @userRegistered="userRegistered" :users="unregisteredUsers"></app-registration>
-    <app-registrations @userUnregistered="userUnregistered" :registrations="registrations"></app-registrations>
+    <new-friend @newHamster="newHamster"></new-friend>
+    <app-eatting @goSleep="goSleep" :atEatting="atEatting"></app-eatting>
+    <app-sleeping @goEat="goEat" :atSleeping="atSleeping"></app-sleeping>
+    <app-records @deleteItem="deleteItem" :list="recordList"></app-records>
   </div>
 </template>
 
 <script>
-  import Registration from './components/Registration.vue';
-  import Registrations from './components/Registrations.vue';
+  import newFriend from './components/newFriend.vue';
+  import Eat from './components/Eat.vue';
+  import Sleep from './components/Sleep.vue';
+  import Records from './components/Records.vue';
 
 export default {
     data() {
         return {
-            registrations: [],
-            users: [
-                {id: 1, name: 'Max', registered: false},
-                {id: 2, name: 'Anna', registered: false},
-                {id: 3, name: 'Chris', registered: false},
-                {id: 4, name: 'Sven', registered: false}
-            ]
+          recordList: [],
+          hamsters: [
+              {id: 1, name: 'Lovegood', rightnow: 'Sleeping'},
+              {id: 2, name: 'Vita', rightnow: 'Sleeping'},
+              {id: 3, name: 'Thomas', rightnow: 'Sleeping'},
+              {id: 4, name: 'Simons', rightnow: 'Sleeping'}
+          ]
         }
     },
     computed: {
-        unregisteredUsers() {
-            return this.users.filter((user) => {
-                return !user.registered;
-            });
+        atSleeping() {
+          return this.hamsters.filter((hamster) => {
+            return hamster.rightnow === 'Sleeping';
+          });
+        },
+        atEatting() {
+          return this.hamsters.filter((hamster) => {
+            return hamster.rightnow === 'Eatting';
+          });
         }
     },
     methods: {
-      userRegistered(user) {
-          const date = new Date;
-          this.registrations.push({userId: user.id, name: user.name, date: date.getMonth() + '/' + date.getDay()})
+      getTime() {
+        var time = new Date();
+        return ( '['+ time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() +']' );
       },
-        userUnregistered(registration) {
-          const user = this.users.find(user => {
-              return user.id == registration.userId;
-          });
-          user.registered = false;
-          this.registrations.splice(this.registrations.indexOf(registration), 1);
-
-        }
+      deleteItem(item) {
+        var index = this.recordList.indexOf(item);
+        this.recordList.splice(index, 1);
+      },
+      goSleep(hamster) {
+        hamster.rightnow = 'Sleeping';
+        this.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Sleeping'});
+      },
+      goEat(hamster) {
+        hamster.rightnow = 'Eatting';
+        this.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Eatting'});
+      },
+      newHamster(hamster) {
+        hamster.id = this.hamsters.length + 1;
+        this.hamsters.push(hamster);
+      }
     },
     components: {
-        appRegistration: Registration,
-        appRegistrations: Registrations
+      newFriend: newFriend,
+      appEatting: Eat,
+      appSleeping: Sleep,
+      appRecords: Records
     }
 }
 </script>
