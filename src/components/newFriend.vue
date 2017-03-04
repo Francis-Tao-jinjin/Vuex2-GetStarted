@@ -11,13 +11,13 @@
 		name: 'newFriend',
 		data() {
 			return {
-				hamster : {	id: null, name: '', rightnow: 'Eatting'}
+				hamster : {	id: null, name: '', rightnow: 'Eatting', color:{ background: ''}}
 			}
 		},
 		methods: {
 			addHamster() {
 				this.$emit('newHamster', this.hamster);
-				this.hamster = {	id: null, name: '', rightnow: 'Eatting'};
+				this.hamster = {	id: null, name: '', rightnow: 'Eatting', color:{ background: ''}};
 			}
 		}
 	}

@@ -12,16 +12,17 @@
   import Eat from './components/Eat.vue';
   import Sleep from './components/Sleep.vue';
   import Records from './components/Records.vue';
+  import color from './util/color.js';
 
 export default {
     data() {
         return {
           recordList: [],
           hamsters: [
-              {id: 1, name: 'Lovegood', rightnow: 'Sleeping'},
-              {id: 2, name: 'Vita', rightnow: 'Sleeping'},
-              {id: 3, name: 'Thomas', rightnow: 'Sleeping'},
-              {id: 4, name: 'Simons', rightnow: 'Sleeping'}
+              {id: 1, name: 'Lovegood', rightnow: 'Sleeping' , color: { background: '#9831be'}},
+              {id: 2, name: 'Vita', rightnow: 'Sleeping' , color:{ background: '#44931d'}},
+              {id: 3, name: 'Thomas', rightnow: 'Sleeping' , color:{ background: '#825a00'}},
+              {id: 4, name: 'Simons', rightnow: 'Sleeping' , color:{ background: '#246eca'}}
           ]
         }
     },
@@ -56,6 +57,8 @@ export default {
       },
       newHamster(hamster) {
         hamster.id = this.hamsters.length + 1;
+        //console.log(color.getRandomColor());
+        hamster.color.background = color.getRandomColor();
         this.hamsters.push(hamster);
       }
     },

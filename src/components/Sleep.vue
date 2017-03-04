@@ -6,7 +6,7 @@
         </div>
         <hr>
         <div class="row" v-for="hamster in atSleeping">
-            <h4>{{ hamster.name }}</h4>
+            <h4><img v-bind:style="hamster.color" src="http://emojipedia-us.s3.amazonaws.com/cache/66/e7/66e7b51de219fa96b2907dddf91c81eb.png">{{ hamster.name }}</h4>
             <button @click="wakeUp(hamster)">wake up</button>
         </div>
     </div>
@@ -61,6 +61,12 @@
         width: 69%;
         margin: 0 0 10px 0;
         box-sizing: border-box;
+    }
+    
+    .row h4 img {
+        width: 27px;
+        vertical-align: bottom;
+        margin-right: 5px;
     }
 
     .row span {

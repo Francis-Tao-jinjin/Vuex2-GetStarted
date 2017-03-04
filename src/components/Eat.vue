@@ -3,7 +3,7 @@
         <h3>They are at Eatting</h3>
         <hr>
         <div class="row" v-for="hamster in atEatting">
-            <h4>{{ hamster.name }}</h4>
+            <h4><img v-bind:style="hamster.color" src="http://emojipedia-us.s3.amazonaws.com/cache/66/e7/66e7b51de219fa96b2907dddf91c81eb.png">{{ hamster.name }}</h4>
             <button @click="finishedEat(hamster)">to Sleep</button>
         </div>
     </div>
@@ -36,6 +36,12 @@
         width: 70%;
         text-align: left;
         margin: 0 0 10px 0;
+    }
+
+    .row h4 img {
+        width: 27px;
+        vertical-align: bottom;
+        margin-right: 5px;
     }
 
     button {
