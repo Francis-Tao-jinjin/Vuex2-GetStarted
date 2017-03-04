@@ -37,7 +37,7 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 大概流程：NewFriend 组建创建新‘仓鼠’，仓鼠被创建的时候有 id、名字、在做什么、头像颜色。其中 id 顺序递增，初始状态是在睡觉觉‘sleeping’，头像颜色随机。
 之后在睡觉的仓鼠可以‘wake up’，就是去吃东西。在吃东西的仓鼠可以‘to sleep’，就是吃饱了去睡觉。任何仓鼠的行为的变化都会被 AppRecords 组建显示出来，其中记录可以删除。
 
-
+<h3><a href="https://github.com/TaoJinjin-Thomas/Vuex2-GetStarted/tree/b1-store-and-state">1.state 和 getters</a></h3>
 
 
 
@@ -47,5 +47,3 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 
 [img1]: ./img/components.png
-[img2]: ./img/components.png
-[img3]: ./img/components.png
