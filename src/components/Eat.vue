@@ -10,12 +10,16 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
     export default {
-        props: ['atEatting'],
+        computed: {
+            ...mapGetters({
+                atEatting: 'atEatting'
+            })
+        },
         methods: {
             finishedEat(hamster) {
                 this.$emit('goSleep', hamster);
-                // user.registered = true;
             }
         }
     }

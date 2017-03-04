@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <new-friend @newHamster="newHamster"></new-friend>
-    <app-eatting @goSleep="goSleep" :atEatting="atEatting"></app-eatting>
-    <app-sleeping @goEat="goEat" :atSleeping="atSleeping"></app-sleeping>
-    <app-records @deleteItem="deleteItem" :list="recordList"></app-records>
+    <app-eatting @goSleep="goSleep"></app-eatting>
+    <app-sleeping @goEat="goEat"></app-sleeping>
+    <app-records @deleteItem="deleteItem"></app-records>
   </div>
 </template>
 
@@ -15,51 +15,28 @@
   import color from './util/color.js';
 
 export default {
-    data() {
-        return {
-          recordList: [],
-          hamsters: [
-              {id: 1, name: 'Lovegood', rightnow: 'Sleeping' , color: { background: '#9831be'}},
-              {id: 2, name: 'Vita', rightnow: 'Sleeping' , color:{ background: '#44931d'}},
-              {id: 3, name: 'Thomas', rightnow: 'Sleeping' , color:{ background: '#825a00'}},
-              {id: 4, name: 'Simons', rightnow: 'Sleeping' , color:{ background: '#246eca'}}
-          ]
-        }
-    },
-    computed: {
-        atSleeping() {
-          return this.hamsters.filter((hamster) => {
-            return hamster.rightnow === 'Sleeping';
-          });
-        },
-        atEatting() {
-          return this.hamsters.filter((hamster) => {
-            return hamster.rightnow === 'Eatting';
-          });
-        }
-    },
     methods: {
       getTime() {
         var time = new Date();
         return ( '['+ time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() +']' );
       },
       deleteItem(item) {
-        var index = this.recordList.indexOf(item);
-        this.recordList.splice(index, 1);
+        var index = this.$store.state.recordList.indexOf(item);
+        this.$store.state.recordList.splice(index, 1);
       },
       goSleep(hamster) {
         hamster.rightnow = 'Sleeping';
-        this.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Sleeping'});
+        this.$store.state.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Sleeping'});
       },
       goEat(hamster) {
         hamster.rightnow = 'Eatting';
-        this.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Eatting'});
+        this.$store.state.recordList.unshift({time: this.getTime(), hamsterName: hamster.name, matter: 'Eatting'});
       },
       newHamster(hamster) {
-        hamster.id = this.hamsters.length + 1;
+        hamster.id = this.$store.state.hamsters.length + 1;
         //console.log(color.getRandomColor());
         hamster.color.background = color.getRandomColor();
-        this.hamsters.push(hamster);
+        this.$store.state.hamsters.push(hamster);
       }
     },
     components: {

@@ -2,7 +2,6 @@
     <div id="atSleeping">
         <div class="summary">
             <h3>They are at Sleeping</h3>
-            <!-- <h5>Total: {{ total }}</h5> -->
         </div>
         <hr>
         <div class="row" v-for="hamster in atSleeping">
@@ -13,17 +12,22 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+    
     export default {
-        props: ['atSleeping'],
         methods: {
             wakeUp(hamster) {
                 this.$emit('goEat', hamster);
             }
         },
         computed: {
-            total() {
-                return this.atSleeping.length;
-            }
+            ...mapGetters({
+                atSleeping: 'atSleeping'
+            })
+            
+            // atSleeping() {
+            //     return this.$store.getters.atSleeping;
+            // }
         }
     }
 </script>

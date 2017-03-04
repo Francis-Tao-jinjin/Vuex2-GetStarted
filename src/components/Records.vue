@@ -2,7 +2,7 @@
 	<div id="recordList">
 		<h3>A Day's Record</h3>
 		<hr>
-		<div class="row" v-for="item in list">
+		<div class="row" v-for="item in $store.state.recordList">
 			<h4>{{ item.time }}</h4>
 			<h4>{{ item.hamsterName }}</h4>
 			<h4>{{ item.matter }}</h4>
@@ -13,7 +13,6 @@
 
 <script>
 	export default {
-		props: ['list'],
 		methods: {
 			deleteItem(item) {
 				this.$emit('deleteItem', item);
