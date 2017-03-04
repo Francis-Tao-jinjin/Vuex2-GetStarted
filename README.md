@@ -26,13 +26,14 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 这是程序目前的效果
 ![img1][img1]
-组建结构：
+组件结构：
+```html
 <App>
 	<NewFriend>
 	<AppEatting>
 	<AppSleeping>
 	<AppRecords>
-
+```
 
 
 
